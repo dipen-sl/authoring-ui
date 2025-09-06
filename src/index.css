@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vogue font for the main title */
+@font-face {
+  font-family: 'Vogue';
+  src: url('/assets/Vogue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback for Vogue font */
+@font-face {
+  font-family: 'Vogue';
+  src: url('./assets/Vogue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Dark theme (default) */
+    --background: 220 13% 9%;
+    --foreground: 210 40% 98%;
+    --card: 220 13% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 13% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 188 100% 50%;
+    --primary-foreground: 220 13% 9%;
+    --secondary: 220 13% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 220 13% 15%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 188 100% 50%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="light"] {
+    /* Light theme using provided palette: fdf0d5, 003049 */
+    --background: 45 100% 95%; /* fdf0d5 - cream background */
+    --foreground: 200 100% 8%; /* 003049 - very dark blue */
+    --card: 45 100% 97%; /* Slightly lighter cream for cards */
+    --card-foreground: 200 100% 8%; /* 003049 - very dark blue */
+    --popover: 45 100% 97%; /* Slightly lighter cream for popovers */
+    --popover-foreground: 200 100% 8%; /* 003049 - very dark blue */
+    --primary: 200 100% 15%; /* 003049 - dark blue for highlighting */
+    --primary-foreground: 45 100% 95%; /* fdf0d5 - cream text on dark */
+    --secondary: 45 30% 90%; /* Muted cream */
+    --secondary-foreground: 200 100% 15%; /* Darker blue for text */
+    --muted: 45 25% 88%; /* Muted cream */
+    --muted-foreground: 200 40% 35%; /* Medium blue-gray */
+    --accent: 45 35% 85%; /* Slightly more saturated cream */
+    --accent-foreground: 200 100% 15%; /* Darker blue for text */
+    --destructive: 0 84.2% 60.2%; /* Keep red for errors */
+    --destructive-foreground: 45 100% 95%; /* Cream background for error text */
+    --border: 45 30% 80%; /* Cream border */
+    --input: 45 25% 92%; /* Cream input background */
+    --ring: 200 100% 15%; /* 003049 - dark blue for focus */
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* AI-style background */
+.ai-bg {
+  background: hsl(var(--background));
+  min-height: 100vh;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.ai-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .ai-bg::before {
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(253, 240, 213, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 75% 75%, rgba(0, 48, 73, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(253, 240, 213, 0.1) 0%, transparent 70%);
+}
+
+/* AI-style prompt field */
+.ai-prompt-field {
+  background: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: hsl(var(--foreground));
+}
+
+.ai-prompt-field:focus {
+  background: hsl(var(--input));
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 1px hsl(var(--ring) / 0.2);
+  outline: none;
+}
+
+.ai-prompt-field:hover {
+  background: hsl(var(--input));
+  border-color: hsl(var(--border));
+}
+
+.ai-prompt-field::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* AI-style textarea */
+.ai-textarea {
+  background: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  resize: vertical;
+  min-height: 120px;
+  color: hsl(var(--foreground));
+}
+
+.ai-textarea:focus {
+  background: hsl(var(--input));
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 1px hsl(var(--ring) / 0.2);
+  outline: none;
+}
+
+.ai-textarea:hover {
+  background: hsl(var(--input));
+  border-color: hsl(var(--border));
+}
+
+.ai-textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* AI-style button */
+.ai-button {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: hsl(var(--primary-foreground));
+}
+
+.ai-button:hover {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.9) 0%, hsl(var(--primary) / 0.7) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
+}
+
+.ai-button-secondary {
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--secondary-foreground));
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ai-button-secondary:hover {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--border));
+  transform: translateY(-1px);
+}
+
+/* AI-style tabs */
+.ai-tabs {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  padding: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px hsl(var(--border) / 0.3);
+}
+
+.ai-tab {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: hsl(var(--muted-foreground));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ai-tab.active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+  box-shadow: 0 2px 4px hsl(var(--primary) / 0.2);
+}
+
+.ai-tab:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.ai-tab:hover:not(.active) {
+  background: hsl(var(--accent) / 0.5);
+  color: hsl(var(--accent-foreground));
+}
+
+/* Code font for monospace elements */
+.code-font {
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+}
+
+/* AI-style heading */
+.ai-heading {
+  font-family: 'Vogue', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  text-transform: none !important;
+  font-variant: normal !important;
+  font-size: inherit !important;
+  line-height: 1.1 !important;
+}
+
+/* AI-style label */
+.ai-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.3s ease;
+}
