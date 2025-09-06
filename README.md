@@ -169,13 +169,19 @@ src/
 │   │   ├── DeleteTestModal.jsx   # Test deletion confirmation
 │   │   ├── EditTestModal.jsx     # Test editing modal
 │   │   └── TestsList.jsx         # Test listing component
+│   ├── FileUpload.jsx            # Legacy file upload component
+│   ├── FormCard.jsx              # Legacy form card component
+│   ├── ModeToggle.jsx            # Legacy mode toggle component
+│   ├── TestList.jsx              # Legacy test list component
 │   ├── TextField.jsx             # Reusable input component
 │   └── ThemeToggle.jsx           # Dark/light mode toggle
 ├── context/
-│   ├── TestContext.jsx           # Legacy test context
+│   ├── TestContext.jsx           # Test data context (legacy support)
 │   └── ThemeContext.jsx          # Theme state management
 ├── hooks/
 │   └── useSuites.js              # Main API hook with placeholder functions
+├── lib/
+│   └── utils.js                  # Legacy utility functions
 ├── pages/
 │   ├── Home.jsx                  # Legacy home page
 │   ├── SuitesPage.jsx            # Test suites management page
